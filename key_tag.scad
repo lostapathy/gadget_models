@@ -1,20 +1,27 @@
 // This module creates a labeled tag for use with keys or luggage
 
-// Works best with 3 or 4 character labels
-
 use <Write.scad>
 font="orbitron.dxf";
 
 
-text="KEY";
-
+text="KEYS";
 
 font_size=10;
-$fn=50;
+$fn=100;
+hole_d=6;
+wall=2;
+thickness=2;
 difference() {
   union() {
-    cylinder(d=font_size*len(text),h=2);
+    hull() {
+      translate([-font_size*len(text)*0.5,0,0])
+        cylinder(d=hole_d+2*wall,h=thickness);
+      translate([-font_size*len(text)*0.33,0,0])
+        cylinder(d=font_size+2*wall,h=thickness);
+      translate([ font_size*len(text)*0.33,0,0])
+        cylinder(d=font_size+2*wall,h=thickness);
+    }
     translate([0,0,2.5]) write(text,t=1,h=font_size,font=font,space=1.1, center=true);
   }
-  translate([0,30/2-3-2,-1]) cylinder(d=6,h=5);
+  translate([-font_size*len(text)*0.5,0,-1]) cylinder(d=hole_d,h=5);
 }
