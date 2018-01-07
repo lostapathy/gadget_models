@@ -1,5 +1,8 @@
 // This module creates a labeled tag for use with keys or luggage
 
+// Text to write on tag
+tag_text = "KEYS";
+
 module key_tag(text) {
   font_size=10;
   $fn=100;
@@ -22,4 +25,4 @@ module key_tag(text) {
       text(text, size=font_size, valign="center", halign="left", font="Mono");
 }
 
-key_tag("KEYS");
+key_tag(tag_text);
